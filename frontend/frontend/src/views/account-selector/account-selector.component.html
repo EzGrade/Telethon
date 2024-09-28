@@ -1,0 +1,9 @@
+<div class="ms-3 mt-3">
+  <h2>Select Accounts</h2>
+  <div class="list-group scrollable-list">
+    <label *ngFor="let account of accounts" class="list-group-item">
+      <input class="form-check-input me-1" type="checkbox" [(ngModel)]="account.selected" (click)="selectAccount(account)">
+      {{ account.username }} [{{ account.telegram_id}}]
+    </label>
+  </div>
+</div>

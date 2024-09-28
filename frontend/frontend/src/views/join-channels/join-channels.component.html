@@ -1,0 +1,16 @@
+<div class="ms-3 mt-3">
+  <h2>Join channels</h2>
+  <form (ngSubmit)="joinChannels()">
+    <div class="mb-3">
+      <label for="delay" class="form-label mt-2">Delay</label>
+      <input type="text" class="form-control" id="delay" name="delay" [(ngModel)]="delay">
+    </div>
+    <div class="mb-3">
+      <label for="channels_list" class="form-label mt-2">Channels list(.txt file)</label>
+      <input type="file" class="form-control" id="channels_list" name="channels_list" (change)="onFileChange($event)">
+    </div>
+    <div class="mb-3">
+      <button type="submit" class="btn btn-primary mt-3">Join</button>
+    </div>
+  </form>
+</div>

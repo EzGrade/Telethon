@@ -1,0 +1,13 @@
+<div class="d-flex flex-column justify-content-end mt-3">
+  <h2>Select Action</h2>
+  <div class="d-flex flex-column">
+    <button class="btn btn-primary mt-2"
+            [ngClass]="{'btn-secondary': isAddAccountRoute()}" [routerLink]="['/add-account']">Add Account</button>
+    <button class="btn btn-primary mt-2"
+            [ngClass]="{'btn-secondary': isSendMessagesRoute()}" [routerLink]="['/send-message']">Send Message</button>
+    <button class="btn btn-primary mt-2"
+            [ngClass]="{'btn-secondary': isJoinChannelsRoute()}" [routerLink]="['/join-channels']">Join Channels</button>
+    <button class="btn btn-danger mt-2"
+            [ngClass]="{'btn-secondary': isRemoveAccountRoute()}" [routerLink]="['/remove-account']">Remove Accounts</button>
+  </div>
+</div>

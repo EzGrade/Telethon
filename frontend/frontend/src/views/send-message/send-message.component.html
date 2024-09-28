@@ -1,0 +1,20 @@
+<div class="ms-3 mt-3">
+  <h2>Send Message</h2>
+  <form (ngSubmit)="sendMessage()">
+    <div class="mb-3">
+      <label for="delay" class="form-label mt-2">Delay</label>
+      <input type="number" class="form-control" id="delay" name="delay" [(ngModel)]="delay">
+    </div>
+    <div class="mb-3">
+      <label for="message" class="form-label mt-2">Message</label>
+      <input type="text" class="form-control" id="message" name="message" [(ngModel)]="message">
+    </div>
+    <div class="mb-3">
+      <label for="channels_list" class="form-label mt-2">Channels list(.txt file)</label>
+      <input type="file" class="form-control" id="channels_list" name="channels_list" (change)="onFileChange($event)">
+    </div>
+    <div class="mb-3">
+      <button type="submit" class="btn btn-primary mt-3">Send</button>
+    </div>
+  </form>
+</div>

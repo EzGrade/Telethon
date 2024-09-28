@@ -1,0 +1,20 @@
+<div class="ms-3 mt-3">
+  <h2>Add Account</h2>
+  <form (ngSubmit)="addAccount()">
+    <div class="mb-3">
+      <label for="api_id" class="form-label">Api ID</label>
+      <input type="text" class="form-control" id="api_id" name="api_id" [(ngModel)]="apiId">
+    </div>
+    <div class="mb-3">
+      <label for="api_hash" class="form-label mt-2">Api Hash</label>
+      <input type="text" class="form-control" id="api_hash" name="api_hash" [(ngModel)]="apiHash">
+    </div>
+    <div class="mb-3">
+      <label for="session" class="form-label mt-2">Session file</label>
+      <input type="file" class="form-control" id="session" name="session" (change)="onFileChange($event)">
+    </div>
+    <div class="mb-3">
+      <button type="submit" class="btn btn-primary mt-3">Add</button>
+    </div>
+  </form>
+</div>
