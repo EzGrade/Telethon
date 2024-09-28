@@ -11,6 +11,10 @@ RUN npm install
 # Set the appropriate permissions
 RUN chown -R node:node /frontend
 
+# Ensure cache folder has correct permissions for the node user
+RUN mkdir -p /frontend/frontend/frontend/.angular/cache && \
+    chown -R node:node /frontend/frontend/frontend/.angular/cache
+
 USER node
 
 EXPOSE 4200
