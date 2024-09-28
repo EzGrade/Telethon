@@ -8,6 +8,11 @@ RUN npm install -g @angular/cli
 
 RUN npm install
 
+# Set the appropriate permissions
+RUN chown -R node:node /frontend
+
+USER node
+
 EXPOSE 4200
 
 WORKDIR /frontend/frontend/frontend
