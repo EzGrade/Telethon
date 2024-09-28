@@ -1,24 +1,20 @@
-FROM node:alpine
+### STAGE 1: Build ###
+FROM node:lts-alpine AS build
 
-WORKDIR /frontend
+# Set the working directory
+WORKDIR /usr/src/app
 
-COPY /frontend/frontend /frontend
+# Copy package.json and package-lock.json
+COPY frontend/frontend/package*.json ./
 
+# Install Angular CLI
 RUN npm install -g @angular/cli
 
+# Install project dependencies
 RUN npm install
 
-# Set the appropriate permissions
-RUN chown -R node:node /frontend
+# Copy the project files
+COPY frontend/frontend .
 
-# Ensure cache folder has correct permissions for the node user
-RUN mkdir -p /frontend/frontend/frontend/.angular/cache && \
-    chown -R node:node /frontend/frontend/frontend/.angular/cache
-
-USER node
-
-EXPOSE 4200
-
-WORKDIR /frontend/frontend/frontend
-
-CMD ng serve --host 0.0.0.0 --port 4200
+# Run the build
+CMD npx ng serve --host 0.0.0.0 --port 4200
