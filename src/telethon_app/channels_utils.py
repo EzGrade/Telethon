@@ -15,7 +15,7 @@ class ChannelsUtils:
         self.account = account
         self.channels = channels or []
 
-        self.session = str(settings.BASE_DIR) + "/" + str(self.account.session)
+        self.session = str(settings.BASE_DIR.parent) + "/" + str(self.account.session)
 
     async def subscribe_channels(self, delay: int = 5):
         async with TelegramClient(self.session, self.account.api_id, self.account.api_hash) as client:
@@ -35,7 +35,7 @@ class ChannelsUtils:
             return subscribed_channels
 
     async def send_message(self, message: str, delay: int = 5):
-        async with TelegramClient(self.session, self.account.api_id, self.account.api_hash) as client:
+        async with TelegramClient(self.session, self.account.api_id, self.account.api_hash, device_model="iPhone 12 Pro") as client:
             for channel in self.channels:
                 try:
                     await client.send_message(channel, message)

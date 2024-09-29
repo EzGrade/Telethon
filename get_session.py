@@ -9,7 +9,7 @@ async def get_session() -> TelegramClient:
     async with TelegramClient(session, api_id, api_hash) as client:
         client.connect()
         return await client.get_me()
-
++380
 
 if __name__ == '__main__':
     client = asyncio.run(get_session())
