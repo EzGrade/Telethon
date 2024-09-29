@@ -1,1 +1,1 @@
-export const BACKEND_IP = "http://0.0.0.0:8000";
+export const BACKEND_IP = "http://46.101.174.21:8000";
