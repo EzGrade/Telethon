@@ -30,12 +30,15 @@ class ChannelsUtils:
                     channel_count -= 1
                     if channel_count > 1:
                         await asyncio.sleep(delay)
+
+                    if index % 10 == 0:
+                        await asyncio.sleep(45)
             return True
 
     async def send_message(self, message: str, delay: int = 5):
         async with TelegramClient(self.session, self.account.api_id, self.account.api_hash) as client:
             channels_count = len(self.channels)
-            for channel in self.channels:
+            for index, channel in enumerate(self.channels):
                 try:
                     await client.send_message(channel, message)
                     logger.info(f'Message sent to {channel}')
@@ -46,4 +49,7 @@ class ChannelsUtils:
                     channels_count -= 1
                     if channels_count > 1:
                         await asyncio.sleep(delay)
+
+                    if index % 10 == 0:
+                        await asyncio.sleep(45)
             return True
