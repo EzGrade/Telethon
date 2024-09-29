@@ -4,10 +4,18 @@ from telethon_auto_subsc.logger import get_logger
 from django.conf import settings
 
 import asyncio
+import random
+import time
 
 from .telethon_core import TelethonCore
 
 logger = get_logger(__name__)
+
+
+def randomize_delay(delay: int) -> float:
+    random.seed(time.time())
+    start = delay - 1 if delay - 1 > 0 else 0
+    return random.uniform(start, delay + 2)
 
 
 class ChannelsUtils:
@@ -29,7 +37,7 @@ class ChannelsUtils:
                 finally:
                     channel_count -= 1
                     if channel_count > 1:
-                        await asyncio.sleep(delay)
+                        await asyncio.sleep(randomize_delay(delay))
 
                     if index % 10 == 0:
                         await asyncio.sleep(45)
@@ -48,7 +56,7 @@ class ChannelsUtils:
                 finally:
                     channels_count -= 1
                     if channels_count > 1:
-                        await asyncio.sleep(delay)
+                        await asyncio.sleep(randomize_delay(delay))
 
                     if index % 10 == 0:
                         await asyncio.sleep(45)
