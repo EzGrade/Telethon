@@ -15,3 +15,4 @@ class SubscribeChannelsSerializer(serializers.Serializer):
     )
     channels = serializers.FileField()
     message = serializers.CharField(required=False)
+    delay = serializers.IntegerField(required=False)

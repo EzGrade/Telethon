@@ -35,12 +35,15 @@ class ChannelsUtils:
             return subscribed_channels
 
     async def send_message(self, message: str, delay: int = 5):
-        async with TelegramClient(self.session, self.account.api_id, self.account.api_hash, device_model="iPhone 12 Pro") as client:
+        async with TelegramClient(self.session, self.account.api_id, self.account.api_hash) as client:
+            channels_count = len(self.channels)
             for channel in self.channels:
                 try:
                     await client.send_message(channel, message)
                     logger.info(f'Message sent to {channel}')
-                    time.sleep(delay)
+                    channels_count -= 1
+                    if channels_count > 1:
+                        time.sleep(delay)
                 except Exception as e:
                     logger.error(f'Error while sending message to {channel}: {e}')
 

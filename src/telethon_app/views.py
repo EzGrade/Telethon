@@ -39,19 +39,24 @@ class SubscribeChannelsViewSet(ViewSet):
         data = dataclasses.validated_data
         data_accounts = data['telegram_accounts']
         data_channels = data['channels'].read().decode('utf-8').splitlines()
+        delay = data.get('delay', 5)
 
         logger.info(f'Accounts: {data_accounts}')
         logger.info(f'Channels: {data_channels}')
 
         accounts_qs = TelegramAccount.objects.filter(telegram_id__in=data_accounts)
+        processing_sessions = set()
         for account in accounts_qs:
+            if account.session_file in processing_sessions:
+                continue
             account_object = TelethonCore(
                 api_id=account.api_id,
                 api_hash=account.api_hash,
                 session=account.session_file
             )
+            processing_sessions.add(account.session_file)
             utils = ChannelsUtils(account_object, data_channels)
-            asyncio.run(utils.subscribe_channels(5))
+            asyncio.run(utils.subscribe_channels(delay))
 
         return Response({'status': 'ok'})
 
