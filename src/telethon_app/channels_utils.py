@@ -39,7 +39,7 @@ class ChannelsUtils:
                     if channel_count > 1:
                         await asyncio.sleep(randomize_delay(delay))
 
-                    if index % 10 == 0:
+                    if index % 5 == 0 and index != 0:
                         await asyncio.sleep(45)
             return True
 
@@ -58,6 +58,6 @@ class ChannelsUtils:
                     if channels_count > 1:
                         await asyncio.sleep(randomize_delay(delay))
 
-                    if index % 10 == 0:
+                    if index % 5 == 0 and index != 0:
                         await asyncio.sleep(45)
             return True
