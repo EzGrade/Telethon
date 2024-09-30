@@ -40,7 +40,7 @@ class ChannelsUtils:
                         await asyncio.sleep(randomize_delay(delay))
 
                     if (index + 1) % 5 == 0 and index != 0:
-                        await asyncio.sleep(45)
+                        await asyncio.sleep(120)
             return True
 
     async def send_message(self, message: str, delay: int = 5):
@@ -59,5 +59,5 @@ class ChannelsUtils:
                         await asyncio.sleep(randomize_delay(delay))
 
                     if (index + 1) % 5 == 0 and index != 0:
-                        await asyncio.sleep(45)
+                        await asyncio.sleep(120)
             return True
